@@ -8,23 +8,16 @@ public class CarController : MonoBehaviour
     public float speed = 5.0f;
     private float forwardInput;
     private float horizontalInput;
+    private GameObject lights;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lights = GameObject.Find("Spot Light");
+        Debug.Log(lights);
+        lights.SetActive(false);
     }
 
-    //void FixedUpdate()
-    //{
-    //    if (Input.GetKey(KeyCode.W))
-    //    {
-    //        rb.AddRelativeForce(Vector3.forward);
-    //    }
-    //    if (Input.GetKey(KeyCode.S))
-    //    {
-    //        rb.AddRelativeForce(-Vector3.forward);
-    //    }
-    //}
 
     private void Update()
     {
@@ -33,6 +26,18 @@ public class CarController : MonoBehaviour
 
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Arch" || other.gameObject.name == "Arch2" || other.gameObject.name == "Arch3")
+        {
+            lights.SetActive(true);
+        }
+        else
+        {
+            lights.SetActive(false);
+        }
     }
 
 }
