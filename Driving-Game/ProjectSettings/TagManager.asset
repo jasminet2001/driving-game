@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - road
+  - Light
+  - Tunnel
+  - Enemy
   layers:
   - Default
   - TransparentFX

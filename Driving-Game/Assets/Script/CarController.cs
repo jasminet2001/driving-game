@@ -8,14 +8,11 @@ public class CarController : MonoBehaviour
     public float speed = 5.0f;
     private float forwardInput;
     private float horizontalInput;
-    private GameObject lights;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        lights = GameObject.Find("Spot Light");
-        Debug.Log(lights);
-        lights.SetActive(false);
     }
 
 
@@ -28,16 +25,6 @@ public class CarController : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.name == "Arch" || other.gameObject.name == "Arch2" || other.gameObject.name == "Arch3")
-        {
-            lights.SetActive(true);
-        }
-        else
-        {
-            lights.SetActive(false);
-        }
-    }
+
 
 }
